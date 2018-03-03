@@ -137,19 +137,8 @@ public class PuzzleBoard {
 
 	//return if the function is solvable
 	public boolean solvable(){
-		int sum = 0;
-		for(int i = 0; i < 9; i++){
-			int f_i = i/3;
-			int f_j = i % 3;
-			for(int j = i + 1; j < 9; j++){
-				int s_i = j/3;
-				int s_j = j % 3;
-				if(values[f_i][f_j] > values[s_i][s_j]){
-					sum++;
-				}
-			}
-		}
-		return (sum % 2 == 0);
+
+		return true;
 	}
 
 	public int[][] copy ()

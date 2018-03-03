@@ -32,7 +32,7 @@ public class Main{
         PuzzleBoard goal = new PuzzleBoard("123456780",null, null, 0);
         //the starting puzzle board is set to what the user inputted
         PuzzleBoard initial = new PuzzleBoard(line,null, goal, 0);
-        Handle h = new Handle(goal, initial);
+        AStar h = new AStar(goal, initial);
         String[] r = h.execute();
         if(r == null){
           System.out.println("Unsolvable Puzzle Inputted");
@@ -62,13 +62,13 @@ public class Main{
         }
         writer.append("\n");
 
-        //will use these puzzle boards and the handle object to generate the random puzzles
+        //will use these puzzle boards and the AStar object to generate the random puzzles
         PuzzleBoard goal = new PuzzleBoard("123456780",null, null, 0);
         PuzzleBoard initial = new PuzzleBoard("123456780",null, goal, 0);
-        Handle h1 = new Handle(goal, initial);
+        AStar h1 = new AStar(goal, initial);
 
         for(PuzzleBoard p : h1.generateRandomPuzzles()){
-          Handle r = new Handle(goal, p);
+          AStar r = new AStar(goal, p);
           String[] res = r.execute();
           if(res != null){
             for(String s : res){

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 
-public class Handle{
+public class AStar{
 
   PuzzleBoard goal;
   PuzzleBoard initial;
@@ -12,7 +12,7 @@ public class Handle{
   HashSet<Integer> visited;
 
 
-  public Handle(PuzzleBoard go, PuzzleBoard i){
+  public AStar(PuzzleBoard go, PuzzleBoard i){
     goal  =go;
     initial = i;
 
@@ -53,16 +53,16 @@ public class Handle{
     while(!frontier.isEmpty()){
       PuzzleBoard top = frontier.poll();
 
-      /*
+
       //case : puzzle is not solvable
       if(!top.solvable()){
         System.out.println(top.getHash()+" not solvable");
         break;
       }
-      */
 
-      //case: the top state is the goal state
-      if(top.getHash() == goal.getHash()){
+
+      //top.isComplete
+      else if(top.getHash() == goal.getHash()){
         //get all parents and the actions needed to get there
         for(PuzzleBoard i = top; i.getParent() != null; i = i.getParent()){
           seq=i.getAction()+"->"+seq;
