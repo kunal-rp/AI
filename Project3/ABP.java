@@ -15,7 +15,7 @@ public class ABP{
 
   //calls this to start alpha beta pruning
   public Board initialRun(long time){
-    return run(Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY,System.currentTimeMillis() + (time*1000));
+    return run(Double.MAX_VALUE,-Double.MAX_VALUE,System.currentTimeMillis() + (time*1000));
   }
 
   //requires alpha, beta, and end time
@@ -40,12 +40,12 @@ public class ABP{
         //the best state that will be found from the children
         Board bestState = initial;
         //the current best value
-        double bestVal = Double.NEGATIVE_INFINITY;
+        double bestVal = -Double.MAX_VALUE;
         //corresponds to the best state
         int[] bestMove = initial.getMove();
 
         //get the current state's children
-        ArrayList<Board> children = initial.getChildren(true);
+        ArrayList<Board>children = initial.getChildren(true);
         for(Board c : children){
           //set up the alpha beta pruning for the current state
           ABP a = new ABP(c,depth - 1, false);
@@ -60,12 +60,12 @@ public class ABP{
             bestMove = res.getMove();
           }
           // pruning, do not continue
-          if (value >= beta) {
+          else if (value >= beta) {
             break;
           }
           // set alpha to whatever variable is larger
           // between alpha max
-          alpha = Math.max(alpha, res.getUtilityValue());
+          alpha = Math.max(alpha, value);
         }
         // set the moves for the best board found
         bestState.setMove(bestMove);
@@ -75,10 +75,10 @@ public class ABP{
       else{
 
         Board bestState = initial;
-        double bestVal = Double.POSITIVE_INFINITY;
+        double bestVal = Double.MAX_VALUE;
         int[] bestMove = initial.getMove();
 
-        ArrayList<Board> children = initial.getChildren(false);
+        ArrayList<Board>children = initial.getChildren(false);
         for(Board c : children){
           ABP a = new ABP(c,depth - 1, true);
           Board res = a.run(alpha, beta, endTime);
@@ -94,7 +94,7 @@ public class ABP{
           }
           // set alpha to whatever variable is larger
           // between alpha max
-          beta = Math.min(beta, res.getUtilityValue());
+          beta = Math.min(beta, value);
         }
         // set the moves for the best board found
         bestState.setMove(bestMove);

@@ -31,9 +31,19 @@ public class Board extends State<Board>{
 
   //override
   protected void evaluate(){
+
+
+
+
+    if(!endState()){
+      heuristic();
+    }
+  }
+
+  //evaluation sub method to give +- infinity score to sate that have four in a row
+  private boolean endState(){
     boolean good = false;
     //looks for 4 of one type horizontally
-
     for(int i = 0; i < (DIM); i++){
       for(int j = 0; j <= (DIM)/2; j++){
         if(values[i][j] != 0 && !good){
@@ -53,7 +63,6 @@ public class Board extends State<Board>{
       }
     }
     //looks for 4 of one type vertically
-
     for(int j = 0; j < (DIM); j++){
       for(int i = 0; i <= (DIM)/2; i++){
         if(values[i][j] != 0 && !good){
@@ -72,10 +81,14 @@ public class Board extends State<Board>{
         }
       }
     }
-    if(!good){
-      evaluationValue = 1.0;
-    }
+    return good;
   }
+
+  //We put the heuiristic function here, and set the value to 'evaluationValue'
+  private void heuristic(){
+
+  }
+
 
   //override
   //indicates when the state is a finished State
