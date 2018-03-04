@@ -23,7 +23,7 @@ public class ABP{
     //is the initial Board a finished state? if so break and return the state
     //the utility value would have already been set to +- infinity
     if(initial.isFinishedState()){
-      System.out.println("Finished State MEET");
+      System.out.println(depth + " Finished State MEET : "+ initial.getUtilityValue() + " | "+ initial.getMove()[0] + " , "+initial.getMove()[1]);
       return initial;
     }
     //the state is a regular state

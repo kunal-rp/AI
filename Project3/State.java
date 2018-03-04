@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public abstract class State<I extends State>{
 
-  double evaluationValue;
-  double utilityValue ;
+  double evaluationValue = 0;;
+  double utilityValue = 0;
   //move made to get to state
   int[] move;
 

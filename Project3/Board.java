@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Board extends State<Board>{
 
@@ -18,6 +19,16 @@ public class Board extends State<Board>{
       }
     }
     evaluate();
+  }
+
+  public String toString(){
+    String r = "";
+    for(int i = 0; i < DIM; i++){
+      for(int j = 0; j < DIM; j++){
+        r+= String.valueOf(values[i][j]);
+      }
+    }
+    return r;
   }
 
   public Board(int[][] v){
@@ -86,13 +97,37 @@ public class Board extends State<Board>{
 
   //We put the heuiristic function here, and set the value to 'evaluationValue'
   private void heuristic(){
-
+    double sum = 0;
+    for(int i = 0; i < (DIM); i++){
+      for(int j = 0; j <= (DIM)/2; j++){
+        if(values[i][j] != 0){
+          if(values[i][j] == values[i][j+1] || values[i][j] == values[i][j+2] || values[i][j] == values[i][j+3]){
+            for(int k = 0; k < 4; k++){
+              sum += (values[i][j+k] * 1000);
+            }
+          }
+        }
+      }
+    }
+    //looks for 4 of one type vertically
+    for(int j = 0; j < (DIM); j++){
+      for(int i = 0; i <= (DIM)/2; i++){
+        if(values[i][j] != 0){
+          if(values[i][j] == values[i+1][j] || values[i][j] == values[i+2][j] || values[i][j] == values[i+3][j]){
+            for(int k = 0; k < 4; k++){
+              sum += (values[i+k][j] * 1000);
+            }
+          }
+        }
+      }
+    }
+    evaluationValue = sum;
   }
 
 
   //override
   //indicates when the state is a finished State
-   protected boolean isFinishedState(){
+  protected boolean isFinishedState(){
     return (utilityValue == WIN || utilityValue == LOSS);
   }
 
@@ -118,7 +153,11 @@ public class Board extends State<Board>{
           Board b = new Board(a);
           int[] move = {i,j};
           b.setMove(move);
+
           t.add(b);
+
+
+
         }
       }
     }
@@ -126,11 +165,11 @@ public class Board extends State<Board>{
   }
 
   private int[][] copy() {
-		int[][] child = new int[values.length][];
-		for (int i = 0; i < values.length; i++)
-			child[i] = Arrays.copyOf(values[i], values.length);
-		return child;
-	}
+    int[][] child = new int[values.length][];
+    for (int i = 0; i < values.length; i++)
+    child[i] = Arrays.copyOf(values[i], values.length);
+    return child;
+  }
 
   public void printBoard(){
     for(int i =0; i < DIM; i++){
