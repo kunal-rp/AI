@@ -89,9 +89,8 @@ public class Board{
       for(int j = values[i]; j <values.length; j++){
         System.out.print("-");
       }
-      System.out.println();
+      System.out.println("\n");
     }
-    System.out.println();
   }
 
 

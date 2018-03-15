@@ -11,7 +11,7 @@ public class Main{
     double Gtime = 0;
     double Gcost= 0;
 
-    int num = 1;
+    int num = 100;
     for(int i = 1; i <= num; i++){
       System.out.print(" "+i +" out of "+num+"\r" );
 
@@ -35,6 +35,7 @@ public class Main{
         Gcorrect++;
       }
     }
+
     System.out.println("\n \r Done \nAVG Time RR(mili) : "+ RRtime/num);
     System.out.println("Correct RR : "+ (RRcorrect/num)*100+"%");
     System.out.println("Avg Cost RR: "+ RRcost/num);
@@ -43,6 +44,7 @@ public class Main{
     System.out.println("Correct G: "+ (Gcorrect/num)*100+"%");
     System.out.println("Avg Cost G: "+ Gcost/num);
 
+    /*
     System.out.println("Random Restart:");
     for(int i = 0; i < 3; i++){
       System.out.println("Ex." + (i+1));
@@ -60,10 +62,6 @@ public class Main{
       b.printBoard();
       System.out.println("Fitness : "+ b.getFitness());
     }
-
-
-
-
-
+    */
   }
 }
