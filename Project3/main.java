@@ -2,6 +2,7 @@ public class main{
   public static void main(String args[]){
 
 
+    //testing
     int [][] v = {{0,0,1,0,0,0,0,0},
                   {0,0,1,0,0,0,0,0},
                   {0,0,1,0,0,0,0,0},
@@ -17,8 +18,8 @@ public class main{
     ABP a = new ABP(b, 5, true);
     Board res = a.initialRun(5);
     int[] move = res.getMove();
-    System.out.println(move[0] + " , "+move[1]);
-    
+    res.printBoard();
+
 
 
   }

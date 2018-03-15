@@ -51,6 +51,7 @@ public class ABP{
           ABP a = new ABP(c,depth - 1, false);
           //get the aplha beta pruning result of the current state
           Board res = a.run(alpha, beta, endTime);
+
           //get the resulting state's utility value
           Double value = res.getUtilityValue();
           //if the resulting state is the better than the saved one ; update best vars

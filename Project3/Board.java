@@ -153,11 +153,7 @@ public class Board extends State<Board>{
           Board b = new Board(a);
           int[] move = {i,j};
           b.setMove(move);
-
           t.add(b);
-
-
-
         }
       }
     }
@@ -178,6 +174,10 @@ public class Board extends State<Board>{
       }
       System.out.println();
     }
+  }
+
+  public String printMove(){
+    return move[0] + ","+move[1];
   }
 
 
